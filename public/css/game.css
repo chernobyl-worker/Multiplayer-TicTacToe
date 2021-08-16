@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Palette Mosaic", cursive;
+}
+:root {
+  --cell-size: 6rem;
+  --mark-size: calc(var(--cell-size) * 0.9);
+  --bg-color: white;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: xx-large;
+}
+
+.board-block {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 2;
+  overflow: auto;
+  display: flex;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-content: center;
+  justify-content: center;
+}
+
+.cell {
+  position: relative;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 0.2rem solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+  border-left-color: var(--bg-color);
+}
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top-color: var(--bg-color);
+}
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+  border-right-color: var(--bg-color);
+}
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+  border-bottom-color: var(--bg-color);
+}
+
+.cell.x,
+.cell.o {
+  cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after {
+  content: "";
+  position: absolute;
+  background-color: black;
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+}
+
+.cell.x::after {
+  transform: rotate(45deg);
+}
+
+.cell.x::before {
+  transform: rotate(-45deg);
+}
+
+.cell.o::before,
+.cell.o::after {
+  content: "";
+  position: absolute;
+  background-color: black;
+  border-radius: 100%;
+}
+
+.cell.o::after {
+  background-color: var(--bg-color);
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+}
+
+.cell.o::before {
+  width: var(--mark-size);
+  height: var(--mark-size);
+}

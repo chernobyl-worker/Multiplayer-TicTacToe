@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap");
+body {
+  font-size: 25px;
+  text-align: center;
+  font-family: "Palette Mosaic", cursive;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 4rem;
+}
+
+span {
+  color: red;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+label {
+  margin: 1rem;
+  padding: 1rem;
+  width: 10em;
+  height: 4em;
+  font-size: 1.5em;
+}
+
+.hidden:checked + label {
+  font-family: "Palette Mosaic", cursive;
+  color: rgb(255, 0, 0);
+}
+
+button {
+  margin: 8rem;
+  width: 5em;
+  height: 2em;
+  font-size: 1.5em;
+  font-family: "Palette Mosaic", cursive;
+  border-radius: 0.5em;
+  box-shadow: 0.5rem 0.5rem 0.5rem black, -0.1rem -0.1rem 0.5rem black;
+  /* background-color: rgb(185, 180, 180); */
+}
