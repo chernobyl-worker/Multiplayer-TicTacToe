@@ -9,13 +9,21 @@
 </head>
 <body>
     <h1>Tic <span>Tac</span> Toe</h1>
-    <form action="game.html" method="get">
-        <input type="radio" class="hidden" id="online" name="mode" value="online" required>
+    <form action="/game" method="post">
+        <input type="radio" class="hidden" id="online" name="mode" value="online" checked>
         <label for="online">Online</label>
-        <input type="radio" class="hidden" id="offline" name="mode" value="offline">
+        <input type="radio" class="hidden" id="offline" name="mode" value="offline" required>
         <label for="offline">Offline</label>
+<!-- Name for Online games... Complete -->
+        <!-- <br>
+        <div class="name-for-online-game">
+            <label for="name">Name:
+                <input type="text" class="player-name" name="name" id="name">
+            </label>
+        </div> -->
         <br>
         <button type="submit">Play</button>
     </form>
+    <!-- <script src="js/index.js"></script> -->
 </body>
 </html>

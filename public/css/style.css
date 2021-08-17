@@ -31,8 +31,18 @@ label {
   color: rgb(255, 0, 0);
 }
 
+/* .name-for-online-game {
+  margin: 3rem 0 1rem 0;
+}
+.player-name {
+  font-family: "Palette Mosaic", cursive;
+  font-size: 2rem;
+  width: 16rem;
+  height: 2rem;
+} */
+
 button {
-  margin: 8rem;
+  margin: 4rem;
   width: 5em;
   height: 2em;
   font-size: 1.5em;

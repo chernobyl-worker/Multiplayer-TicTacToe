@@ -3,12 +3,24 @@ const path = require("path");
 const http = require("http");
 const socketio = require("socket.io");
 const uuid = require("uuid");
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 const server = http.createServer(app);
 const io = socketio(server);
 
 app.use(express.static(path.join(__dirname, "public")))
+
+app.post("/game", (req, res) => {
+    console.log(req.body);
+    if(req.body.mode === "online") {
+        res.sendFile("/game.html", {root: "./public"});
+    } else {
+        res.send("Offline games not implemented yet !!");
+    }
+});
 
 let gameQueue = [];
 io.on("connection", (socket) => {
