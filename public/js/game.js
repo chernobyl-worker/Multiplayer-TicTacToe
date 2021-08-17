@@ -54,7 +54,11 @@ for(let i=0; i<3; i++) {
 }
 
 function handleClick(e, i, j) {
-    board[i][j].mark = Player1;
+    if(board[i][j].mark === "")
+        board[i][j].mark = Player1;
+    else {
+        return;
+    }
     if(checkForWinner(i,j)) {
         socket.emit('win', roomID);
         drawScreen('Win');
