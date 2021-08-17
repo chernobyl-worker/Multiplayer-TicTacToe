@@ -4,6 +4,7 @@
   "description": "Multiplayer Tic Tac Toe",
   "main": "server.js",
   "scripts": {
+    "start": "node server",
     "devStart": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -36,6 +36,10 @@ body {
   font-size: xx-large;
 }
 
+.info {
+  margin: 0 2rem 4rem 0;
+}
+
 .board-block {
   position: fixed;
   top: 0;

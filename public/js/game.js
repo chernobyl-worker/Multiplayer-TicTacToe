@@ -16,21 +16,23 @@ class Cell {
     }
 }
 
-socket.on("connect", () => {
-    socket.emit("join-queue", socket.id);
+socket.on('room-full', (ID) => {
+    roomID = ID;
+    document.querySelector('.overlay').remove();
 });
+
 socket.on('mark', (mark) => {
     Player1 = mark;
     Player2 = mark == 'o'? 'x':'o';
     if(Player1 == 'x') {
         emptyCells++;
         toggleBoardBlock();
+    } else {
+        document.querySelector('.turn').innerHTML = Player2;
     }
+    document.querySelector('.mark').innerHTML += Player1;
 });
-socket.on('room-full', (ID) => {
-    roomID = ID;
-    document.querySelector('.overlay').remove();
-});
+
 
 socket.on("opponentMove", ({row, col}) => {
     board[row][col].mark = Player2;
@@ -68,10 +70,13 @@ function toggleBoardBlock() {
         socket.emit('draw', roomID);
     }
     const body = document.querySelector('body');
+    const turn = document.querySelector('.turn');
     if(blocked) {
+        turn.innerHTML = Player1;
         blocked = false;
         body.removeChild(boardBlock);
     } else {
+        turn.innerHTML = Player2;
         blocked = true;
         body.appendChild(boardBlock);
     }
@@ -79,16 +84,12 @@ function toggleBoardBlock() {
 
 function checkForWinner(i,j) {
     if(board[i][0].mark != "" && board[i][0].mark == board[i][1].mark && board[i][1].mark == board[i][2].mark) {
-        console.log("row",i);
         return true;
     } else if(board[0][j].mark != "" && board[0][j].mark === board[1][j].mark && board[1][j].mark === board[2][j].mark) {
-        console.log("col",j);
         return true;
     } else if(board[0][0].mark != "" && board[0][0].mark === board[1][1].mark && board[1][1].mark === board[2][2].mark) {
-        console.log("Dig pri");
         return true;
     } else if(board[0][2].mark != "" && board[0][2].mark === board[1][1].mark && board[1][1].mark === board[2][0].mark) {
-        console.log("dig sec");
         return true;
     }
     return false;
@@ -97,6 +98,6 @@ function checkForWinner(i,j) {
 function drawScreen(status) {
     const endScreen = document.createElement('div');
     endScreen.classList.add("overlay");
-    endScreen.innerHTML = status;
+    endScreen.innerHTML = `<h1>${status}</h1>`;
     document.querySelector('body').appendChild(endScreen);
 }

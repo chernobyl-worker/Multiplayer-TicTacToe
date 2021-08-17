@@ -39,5 +39,12 @@ button {
   font-family: "Palette Mosaic", cursive;
   border-radius: 0.5em;
   box-shadow: 0.5rem 0.5rem 0.5rem black, -0.1rem -0.1rem 0.5rem black;
-  /* background-color: rgb(185, 180, 180); */
+  background-color: red;
+  color: white;
+}
+
+button:hover {
+  color: red;
+  background: white;
+  border-color: red;
 }
