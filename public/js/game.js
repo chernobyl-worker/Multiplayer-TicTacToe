@@ -6,6 +6,7 @@ let Player1;
 let player2;
 let roomID;
 let emptyCells = 9;
+let gameComplete = false;
 
 class Cell {
     constructor(i,j,ref) {
@@ -42,6 +43,10 @@ socket.on("opponentMove", ({row, col}) => {
 
 socket.on('draw', () => {drawScreen('Draw')});
 socket.on('loss', () => {drawScreen("Loss")});
+socket.on('leaver', () => {
+    if(!gameComplete)
+        drawScreen("Player Left");
+});
 
 let cells = document.querySelectorAll('.cell');
 let board = [];
@@ -100,6 +105,7 @@ function checkForWinner(i,j) {
 }
 
 function drawScreen(status) {
+    gameComplete = true;
     const endScreen = document.createElement('div');
     endScreen.classList.add("overlay");
     endScreen.innerHTML = `<h1>${status}</h1>`;
